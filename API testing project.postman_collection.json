@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "14b23444-99c1-4d63-9f07-3043095cd366",
+		"name": "API testing project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45579389",
+		"_collection_link": "https://elvispetersons.postman.co/workspace/Elvis-Petersons's-Workspace~a05dd89f-d71a-467a-85e1-04f49ec8ef43/collection/45579389-14b23444-99c1-4d63-9f07-3043095cd366?action=share&source=collection_link&creator=45579389"
+	},
+	"item": [
+		{
+			"name": "CheckIfRequiredFieldHasBeenFilled",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfRequiredFieldHasValue",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckErrorMessageForOtherFields",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfICanGetMultipleNames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name[]=Bilbo&name[]=Timmy",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name[]",
+							"value": "Bilbo"
+						},
+						{
+							"key": "name[]",
+							"value": "Timmy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfRequestIsCaseSensitive",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfNummericInputIsValid",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfSpecialCharactersReturnError",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfUnicodeCharactersAccepted",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfReallyLongStringIsAccepted",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "SQLInjectionAttempt",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckResponseContainsRequiredFields",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfPostMethodGetsDenied",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name=' OR 1=1 --",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "' OR 1=1 --"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckIfDeleteMethodGetsDenied",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name=Timmy",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Timmy"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
