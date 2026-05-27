@@ -9,9 +9,51 @@
 	"item": [
 		{
 			"name": "CheckIfRequiredFieldHasBeenFilled",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains name\", function () {\r",
+							"    let json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is less than 200 ms\", function()\r",
+							"{\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io/?name=Elvis",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Elvis"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -19,7 +61,25 @@
 			"name": "CheckIfRequiredFieldHasValue",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io/?name",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -27,7 +87,35 @@
 			"name": "CheckErrorMessageForOtherFields",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io/?name=12313123",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "12313123"
+						},
+						{
+							"key": "count",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -62,7 +150,22 @@
 			"name": "CheckIfRequestIsCaseSensitive",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name=Elvis",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Elvis"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -70,7 +173,22 @@
 			"name": "CheckIfNummericInputIsValid",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name=12312",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "12312"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -78,7 +196,23 @@
 			"name": "CheckIfSpecialCharactersReturnError",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name=!%$#^&!#@",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "!%$"
+						}
+					],
+					"hash": "^&!#@"
+				}
 			},
 			"response": []
 		},
@@ -86,7 +220,22 @@
 			"name": "CheckIfUnicodeCharactersAccepted",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name=žanis",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "žanis"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -94,7 +243,22 @@
 			"name": "CheckIfReallyLongStringIsAccepted",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -102,7 +266,22 @@
 			"name": "SQLInjectionAttempt",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name=' OR 1=1 --",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "' OR 1=1 --"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -110,7 +289,30 @@
 			"name": "CheckResponseContainsRequiredFields",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://api.agify.io?name&age&count",
+					"protocol": "https",
+					"host": [
+						"api",
+						"agify",
+						"io"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": null
+						},
+						{
+							"key": "age",
+							"value": null
+						},
+						{
+							"key": "count",
+							"value": null
+						}
+					]
+				}
 			},
 			"response": []
 		},
